@@ -1,0 +1,54 @@
+@import '../../../../styles/_variables.scss';
+
+#extended-tables {
+  .table {
+    .comments-title {
+      text-align: center;
+    }
+
+    .table-body {
+      .table-cell {
+        vertical-align: middle;
+
+        &[cell-name = 'status'] {
+          &[cell-value = 'ACTIVE'] {
+            color: $green;
+          }
+        }
+
+        &[cell-name = 'policy'] {
+          .policy-plan {
+            display: block;
+
+            &.policy-plan-free {
+              color: $grey5;
+            }
+
+            &.policy-plan-basic {
+              color: $red;
+            }
+
+            &.policy-plan-pro {
+              color: $orange;
+            }
+
+            &.policy-plan-king {
+              color: $purple;
+            }
+          }
+        }
+
+        &[cell-name = 'comments'] {
+          color: $purple;
+          font-weight: bold;
+          text-align: center;
+
+          &::after {
+            content: '\f075';
+            font-family: FontAwesome;
+          }
+        }
+      }
+    }
+  }
+}

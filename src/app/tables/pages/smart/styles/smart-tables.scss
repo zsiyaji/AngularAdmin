@@ -1,0 +1,146 @@
+@import '../../../../styles/_variables';
+@import '../../../../styles/_tables';
+@import '../../../../styles/_nouislider-override';
+
+#smart-tables {
+
+  .smart-table-filters {
+    .date-input {
+      display: inline;
+      width: 60%;
+    }
+    .reset-date {
+      background-color: transparent;
+      border: 0;
+      display: inline-block;
+      font-size: $font-size-lg;
+      vertical-align: sub;
+    }
+  }
+
+  ng2-smart-table {
+
+    table {
+      @extend .table;
+      @extend .table-stripes;
+      margin-top: 30px;
+
+      .ng2-smart-sort-link {
+        color: $purple;
+
+        &::after {
+          border-bottom-color: $purple;
+        }
+      }
+
+      .smart-table-inprogress {
+        color: $yellow;
+      }
+
+      .smart-table-completed {
+        color: $green;
+      }
+
+      .smart-table-cancelled {
+        color: $red;
+      }
+
+      .ng2-smart-action {
+        color: $purple;
+      }
+    }
+
+    ng2-smart-table-pager {
+      float: right;
+
+      .ng2-smart-page-item {
+        &.page-item {
+          background-color: $grey6;
+        }
+
+        .ng2-smart-page-link {
+          &.page-link {
+            background-color: transparent;
+            border: 0;
+            border-radius: 0;
+            color: $purple;
+            font-size: $font-size-sm;
+            font-weight: bold;
+            padding: 8px 15px;
+          }
+        }
+
+        &:nth-child(even) {
+          background-color: $grey7;
+        }
+
+        &:first-child {
+          border-bottom-left-radius: 4px;
+          border-top-left-radius: 4px;
+        }
+
+        &:last-child {
+          border-bottom-right-radius: 4px;
+          border-top-right-radius: 4px;
+        }
+
+        &.active {
+          .ng2-smart-page-link {
+            &.page-link {
+              background-color: $purple;
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  nouislider {
+    padding: 16px 0;
+  }
+
+  #local-filters-table {
+    .profile-pic {
+      border-radius: 50%;
+      display: block;
+      margin: auto;
+    }
+  }
+
+  .results-per-page {
+    .form-control {
+      border-color: $purple;
+      color: $purple;
+      display: inline-block;
+      font-weight: bold;
+      margin-left: 15px;
+      width: 60px;
+    }
+  }
+
+  .btn-clear {
+    margin-left: 15px;
+  }
+
+  .row-input {
+    margin: 15px 0;
+  }
+
+  .btn {
+    background-color: $purple;
+    color: $white;
+    font-size: $font-size-xs;
+    font-weight: bold;
+    letter-spacing: $letter-spacing-xxs;
+    padding: 7px 30px;
+  }
+
+  //this is for interests input
+  .mat-input-infix {
+    &.mat-form-field-infix {
+      border-top: 0px;
+      padding: 0px;
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<div id="regular-tables">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card">
+
+        <header class="row title">
+          <div class="col-xs-12">
+            <h2 class="main-title">Striped Table with Hover</h2>
+            <span class="sub-title">A description of this table can be shown here</span>
+          </div>
+        </header>
+
+        <div class="row">
+          <div class="col-xs-12 table-wrapper">
+            <table class="table table-stripes">
+              <thead class="table-head">
+                <tr class="table-row">
+                  <th class="table-cell" *ngFor="let item of columns_list">
+                    <ng-container>{{item.title}}</ng-container>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="table-body">
+                <tr *ngFor="let item of data_list" class="table-row">
+                  <td class="table-cell" *ngFor="let cell of item">
+                    <ng-container>{{cell}}</ng-container>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card">
+
+        <header class="row title">
+          <div class="col-xs-12">
+            <h2 class="main-title">Striped Table with Hover</h2>
+            <span class="sub-title">A description of this table can be shown here</span>
+          </div>
+        </header>
+
+        <div class="row">
+          <div class="col-xs-12 table-wrapper">
+            <table class="table table-lines">
+              <thead class="table-head">
+                <tr class="table-row">
+                  <th class="table-cell" *ngFor="let item of columns_list">
+                    <ng-container>{{item.title}}</ng-container>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="table-body">
+                <tr *ngFor="let item of data_list" class="table-row">
+                  <td class="table-cell" *ngFor="let cell of item">
+                    <ng-container>{{cell}}</ng-container>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

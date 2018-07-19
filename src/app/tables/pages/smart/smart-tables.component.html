@@ -1,0 +1,134 @@
+<div id="smart-tables">
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <div class="card">
+
+        <header class="row title">
+          <div class="col-xs-12">
+            <h2 class="main-title">Smart Table</h2>
+            <span class="sub-title">Browse table content easily</span>
+          </div>
+        </header>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div *ngIf="filtersVisible" class="smart-table-filters">
+              <form [formGroup]="filtersForm">
+
+                <div class="row row-input">
+                  <div class="col-sm-2">
+                    <label class="control-label">Search</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="text" formControlName="search">
+                  </div>
+                </div>
+
+                <div class="row row-input">
+                  <div class="col-sm-2">
+                    <label class="control-label">Age range</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <!-- http://tb.github.io/ng2-nouislider/ -->
+                    <nouislider *ngIf="isBrowser" [connect]="true" [min]="0" [max]="100" [step]="1" [tooltips]="[true,true]" [formControl]="filtersForm.controls.ageRange"></nouislider>
+                  </div>
+                </div>
+
+                <div class="row row-input">
+                  <div class="col-sm-2">
+                    <label class="control-label">Interests</label>
+                  </div>
+                  <div class="col-sm-10">
+                    <mat-form-field>
+                      <mat-chip-list mdPrefix #interestsList class="form-control">
+                        <mat-chip *ngFor="let interest of interests"
+                          class="regular"
+                          [selectable]="selectable"
+                          [removable]="removable"
+                          (remove)="removeInterest(interest)">
+                          {{ interest }}
+                          <i matChipRemove class="fa fa-times" *ngIf="removable"></i>
+                        </mat-chip>
+                        <input mdInput disableRipple
+                          [matChipInputFor]="interestsList"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                          [matChipInputAddOnBlur]="addOnBlur"
+                          (matChipInputTokenEnd)="addInterest($event)" />
+                      </mat-chip-list>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row row-input">
+                  <div class="col-sm-2">
+                    <label class="control-label">Subscribed before</label>
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control date-input" [matDatepicker]="picker" placeholder="Choose a date" [formControl]="filtersForm.controls.subscribed">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <!-- <input disabled type="text" class="form-control date-input" [matDatepicker]="picker" placeholder="Choose a date" [formControl]="filtersForm.controls.subscribed">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker disabled="false" #picker></mat-datepicker> -->
+                    <button type="button" class="reset-date" title="Clear date" (click)="resetDatePicker()">
+                      <span class="fa fa-times"></span>
+                    </button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row row-input">
+          <div class="col-xs-12">
+            <button class="btn btn-toggle" type="button" (click)="toggleFilters()">{{toggleFiltersLabel}}</button>
+            <button class="btn btn-clear" type="button" (click)="clearFilters()">Clear filters</button>
+            <div class="results-per-page pull-right">
+              <label class="control-label">Results per page</label>
+              <input class="form-control" type="number" min="1" (change)="setResultsPerPage($event.target.value)" value="{{perPage}}">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 table-wrapper">
+            <ng2-smart-table id="manual-filters-table" class="table table-responsive"
+              [settings]="settingsManualFilters" [source]="dataSourceManualFilters"
+              (deleteConfirm)="onDeleteConfirm($event)"
+              (editConfirm)="onSaveConfirm($event)"
+              (createConfirm)="onCreateConfirm($event)"
+            ></ng2-smart-table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <header class="row title">
+          <div class="col-xs-12">
+            <h2 class="main-title">Local filters</h2>
+            <span class="sub-title">Filter each column individually using the basic functionality provided by the smart table's API</span>
+          </div>
+        </header>
+
+        <div class="row">
+          <div class="col-xs-12 table-wrapper">
+            <ng2-smart-table id="local-filters-table"
+              [settings]="settingsLocalFilters" [source]="dataSourceLocalFilters"
+              (deleteConfirm)="onDeleteConfirm($event)"
+              (editConfirm)="onSaveConfirm($event)"
+              (createConfirm)="onCreateConfirm($event)"
+            ></ng2-smart-table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

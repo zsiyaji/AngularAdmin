@@ -1,0 +1,52 @@
+<div id="extended-tables">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card">
+
+        <header class="row title">
+          <div class="col-xs-12">
+            <h2 class="main-title">Extended table with awesome columns</h2>
+            <span class="sub-title">A description of this table can be shown here</span>
+          </div>
+        </header>
+
+        <div class="row">
+          <div class="col-xs-12 table-wrapper">
+            <table class="table table-stripes">
+              <thead>
+                <tr>
+                  <th *ngFor="let item of columns_list" [ngClass]="{'comments-title': item.value.title === 'Comments'}">
+                    {{ item.value.title }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="table-body">
+                <tr *ngFor="let item of data_list">
+                  <td [attr.cell-name]="cell.name" [attr.cell-value]="cell.value" class="table-cell" *ngFor="let cell of item">
+                    <img *ngIf="cell.name == 'picture'" class="profile-pic" [src]="cell.value" alt="{{i}}">
+                    <mat-progress-bar *ngIf="cell.name == 'progress'" [value]="cell.value" class="mat-progress-bar-round"
+                      [ngClass]="'color ' + ((cell.value <= 30) ? 'color-red' : (cell.value < 70) ? 'color-yellow' : 'color-green')">
+                    </mat-progress-bar>
+                    <ng-container *ngIf="cell.name === 'policy'">
+                      <span class="policy-value">${{ cell.value }}</span>
+                      <span *ngIf="cell.value === 0" class="policy-plan policy-plan-free">Free Trial</span>
+                      <span *ngIf="cell.value >= 5000 && cell.value < 10000" class="policy-plan policy-plan-basic">Basic Plan</span>
+                      <span *ngIf="cell.value >= 10000 && cell.value < 20000 " class="policy-plan policy-plan-pro">Pro Plan</span>
+                      <span *ngIf="cell.value >= 20000" class="policy-plan policy-plan-king">King Plan</span>
+                    </ng-container>
+                    <ng-container *ngIf="cell.name !== 'progress' && cell.name !== 'picture' && cell.name !== 'policy'">
+                      {{ cell.value }}
+                    </ng-container>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
